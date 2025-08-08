@@ -1,113 +1,103 @@
-<!DOCTYPE html><html lang="zh-TW">
+<!DOCTYPE html><html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <title>PDF 資源平台</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ans.ru</title>
   <style>
-    body { font-family: sans-serif; background: #f4f4f4; padding: 20px; }
-    .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; }
-    .hidden { display: none; }
-    iframe { width: 100%; height: 500px; border: none; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #fdfdfd;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(135deg, #64b5f6, #9575cd);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .container {
+      padding: 1rem;
+    }
+    .card {
+      background: white;
+      margin: 1rem 0;
+      padding: 1rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 0.5rem;
+    }
+    .hidden {
+      display: none;
+    }
+    .disclaimer {
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      border-radius: 1rem;
+      padding: 1rem;
+      margin: 1rem 0;
+      color: #856404;
+    }
+    button {
+      background: #64b5f6;
+      color: white;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body>
-<div class="container">
-  <h2>📢 使用者規範 / 免責聲明</h2>
-  <ul>
-    <li>1. 本站所有資源、帳號由 GitHub 提供，無盜用或非法行為。</li>
-    <li>2. 抄作業導致負面影響，管理者不負責。</li>
-    <li>3. 使用問題由使用者自行承擔。</li>
-    <li>4. 嚴禁利用本站作弊。</li>
-  </ul>
-  <button onclick="acceptDisclaimer()">我已閱讀並同意</button>  <div id="login" class="hidden">
-    <h3>登入</h3>
-    <input id="user" placeholder="帳號"><br><br>
-    <input id="pass" type="password" placeholder="密碼"><br><br>
-    <button onclick="login()">登入</button>
-    <p id="error" style="color:red"></p>
-  </div>  <div id="app" class="hidden">
-    <h3>PDF 檔案列表</h3>
-    <div id="pdfList"></div>
-    <div id="uploadArea" class="hidden">
-      <hr>
-      <h4>上傳 PDF</h4>
-      <input type="file" id="pdfFile"><br><br>
-      <button onclick="uploadPdf()">上傳</button>
-      <p id="uploadStatus"></p>
-    </div>
-    <div id="viewer"></div>
-    <br><button onclick="logout()">登出</button>
+  <header>Ans.ru - 答案網站</header>
+  <div class="container">
+    <div class="disclaimer" id="disclaimer">
+      <strong>免責聲明!</strong><br /><br />
+      1. 本站所有資源、帳號都是由 GitHub 提供，絕對沒有盜用或是任何非法行為。<br />
+      2. 如使用本站抄作業導致任何負面影響，管理者皆不負責。<br />
+      3. 如使用本站出現任何問題，由使用者承擔。<br />
+      4. 嚴禁只用本站進行作弊。<br />
+      <button onclick="showContent()">我已閱讀並同意</button>
+    </div><div id="content" class="hidden">
+  <div class="card">
+    <h3>國文即時測驗</h3>
+    <iframe src="https://ruixue9626.github.io/Mahiro.ru/3%E5%9C%8B%E6%96%87%E5%8D%B3%E6%99%82%E5%8D%B7.pdf"></iframe>
   </div>
-</div><script>
-  const USERS = {
-    user01: { pw: '0123', role: 'user' },
-    Ruixue: { pw: '0325', role: 'admin' }
-  };
-  let currentUser = null;
+  <div class="card">
+    <h3>國文成員擂台</h3>
+    <iframe src="https://ruixue9626.github.io/Mahiro.ru/3%E5%9C%8B%E6%96%87%E6%88%90%E8%AA%9E%E6%93%82%E5%8F%B0.pdf"></iframe>
+  </div>
+  <div class="card">
+    <h3>國文語文練功房</h3>
+    <iframe src="https://ruixue9626.github.io/Mahiro.ru/3%E5%9C%8B%E6%96%87%E8%AA%9E%E6%96%87%E7%B7%B4%E5%8A%9F%E5%9D%8A.pdf"></iframe>
+  </div>
+  <div class="card">
+    <h3>橘子複習卷</h3>
+    <iframe src="https://ruixue9626.github.io/Mahiro.ru/3%E6%A9%98%E5%AD%90%E8%A4%87%E7%BF%92%E5%8D%B7.pdf"></iframe>
+  </div>
+  <div class="card">
+    <h3>英文文法即時通</h3>
+    <iframe src="https://ruixue9626.github.io/Mahiro.ru/3%E8%8B%B1%E6%96%87%E6%96%87%E6%B3%95%E5%8D%B3%E6%99%82%E9%80%9A.pdf"></iframe>
+  </div>
+  <div class="card">
+    <h3>英文對話填空</h3>
+    <iframe src="https://ruixue9626.github.io/Mahiro.ru/3%E8%8B%B1%E6%96%87%E8%AA%B2%E6%96%87%E5%A1%AB%E7%A9%BA.pdf"></iframe>
+  </div>
+</div>
 
-  function acceptDisclaimer() {
-    document.getElementById('login').classList.remove('hidden');
-  }
-
-  function login() {
-    const u = document.getElementById('user').value;
-    const p = document.getElementById('pass').value;
-    const error = document.getElementById('error');
-    if (USERS[u] && USERS[u].pw === p) {
-      currentUser = { name: u, role: USERS[u].role };
-      document.getElementById('login').classList.add('hidden');
-      document.getElementById('app').classList.remove('hidden');
-      if (currentUser.role === 'admin') {
-        document.getElementById('uploadArea').classList.remove('hidden');
-      }
-      fetchPdfs();
-    } else {
-      error.textContent = '帳密錯誤';
+  </div>  <script>
+    function showContent() {
+      document.getElementById("disclaimer").style.display = "none";
+      document.getElementById("content").classList.remove("hidden");
     }
-  }
-
-  function logout() {
-    location.reload();
-  }
-
-  function fetchPdfs() {
-    fetch('/api/pdfs')
-      .then(res => res.json())
-      .then(files => {
-        const list = document.getElementById('pdfList');
-        list.innerHTML = '';
-        files.forEach(f => {
-          const a = document.createElement('a');
-          a.textContent = f;
-          a.href = '#';
-          a.onclick = () => viewPdf(f);
-          a.style.display = 'block';
-          list.appendChild(a);
-        });
-      });
-  }
-
-  function viewPdf(filename) {
-    const viewer = document.getElementById('viewer');
-    viewer.innerHTML = `<iframe src="/uploads/${filename}#toolbar=0&navpanes=0"></iframe>`;
-  }
-
-  function uploadPdf() {
-    const fileInput = document.getElementById('pdfFile');
-    const status = document.getElementById('uploadStatus');
-    const file = fileInput.files[0];
-    if (!file || !file.name.endsWith('.pdf')) {
-      alert('請選擇 PDF 檔案');
-      return;
-    }
-    const formData = new FormData();
-    formData.append('pdf', file);
-    fetch('/api/upload', { method: 'POST', body: formData })
-      .then(res => res.json())
-      .then(data => {
-        status.textContent = '✅ 上傳成功：' + data.filename;
-        fetchPdfs();
-      })
-      .catch(() => status.textContent = '❌ 上傳失敗');
-  }
-</script></body>
+  </script></body>
 </html>
